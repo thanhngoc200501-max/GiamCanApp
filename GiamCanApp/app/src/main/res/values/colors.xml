@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="bg_main_purple">#1C162E</color>
+    <color name="bg_card_purple">#2D2743</color>
+    <color name="btn_gradient_pink">#FF6188</color>
+</resources>
