@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307702460371",
+    "project_id": "giamcanapp",
+    "storage_bucket": "giamcanapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307702460371:android:d477d51293b339f44d4926",
+        "android_client_info": {
+          "package_name": "vn.edu.thanhngoc.GiamCanApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzUYVpizmnD5l5wwzg-kTRXjYccrEKDIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
