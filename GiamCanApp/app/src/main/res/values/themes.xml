@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.GiamCanApp" parent="Base.Theme.GiamCanApp" />
+    <style name="RoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
 </resources>

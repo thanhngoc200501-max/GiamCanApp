@@ -15,14 +15,12 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".WorkoutDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ScheduleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".YogaActivity"
-            android:exported="false" />
+            android:name=".PlayVideoActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".IntroActivity"
             android:exported="true">
