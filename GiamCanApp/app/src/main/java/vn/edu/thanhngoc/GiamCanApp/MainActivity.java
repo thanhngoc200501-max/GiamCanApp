@@ -3,29 +3,77 @@ package vn.edu.thanhngoc.GiamCanApp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.Map;
-import vn.edu.thanhngoc.GiamCanApp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
     private YogaAdapter yogaAdapter;
     private FirebaseFirestore db;
+
+    private BottomNavigationView bottomNavigationView;
+    private TextView tvWorkoutTitle;
+    private TextView tvWorkoutDescription;
+    private ImageView imgWorkoutBanner;
+    private MaterialButton btnStartWorkout;
+    private RecyclerView rvExplore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        setContentView(R.layout.activity_main);
 
         db = FirebaseFirestore.getInstance();
+
+        initViews();
+        setupBottomNavigation();
         loadDataFromFirestore();
+    }
+
+    private void initViews() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        tvWorkoutTitle = findViewById(R.id.tv_workout_title);
+        tvWorkoutDescription = findViewById(R.id.tv_workout_description);
+        imgWorkoutBanner = findViewById(R.id.img_workout_banner);
+        btnStartWorkout = findViewById(R.id.btn_start_workout);
+        rvExplore = findViewById(R.id.rv_explore);
+    }
+
+    private void setupBottomNavigation() {
+        if (bottomNavigationView != null) {
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+            bottomNavigationView.setOnItemSelectedListener(item -> {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.nav_home) {
+                    return true;
+                } else if (itemId == R.id.nav_yoga) {
+                    Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                } else if (itemId == R.id.nav_profile) {
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                }
+                return false;
+            });
+        }
     }
 
     private void loadDataFromFirestore() {
@@ -42,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                             yoga.setMota(document.getString("mota"));
                             yoga.setPicPath(document.getString("picPath"));
 
-                            // 🔥 SỬA LỖI 1: Lấy đúng kiểu Double từ Firestore thay vì Long
                             Double caloDouble = document.getDouble("calo");
                             if (caloDouble != null) {
                                 yoga.setCalo(caloDouble.intValue());
@@ -59,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                                     String link = (String) lessonMap.get("link");
                                     String pic = (String) lessonMap.get("picPath");
 
-                                    // 🔥 SỬA LỖI 2: Đổi vị trí 'link' lên trước 'time' để khớp chuẩn xác với Constructor của class Lession
                                     listLession.add(new Lession(title, link, time, pic));
                                 }
                             }
@@ -82,38 +128,41 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    // Hàm thiết lập phần video Nổi Bật (Card to nhất)
     private void setupFeaturedWorkout(Yoga featuredYoga) {
-        binding.tvWorkoutTitle.setText(featuredYoga.getTieuDe());
-
-        if(featuredYoga.getMota() != null) {
-            binding.tvWorkoutDescription.setText(featuredYoga.getMota());
+        if (tvWorkoutTitle != null) {
+            tvWorkoutTitle.setText(featuredYoga.getTieuDe());
         }
 
-        if (featuredYoga.getPicPath() != null) {
+        if (featuredYoga.getMota() != null && tvWorkoutDescription != null) {
+            tvWorkoutDescription.setText(featuredYoga.getMota());
+        }
+
+        if (featuredYoga.getPicPath() != null && imgWorkoutBanner != null) {
             int drawableId = getResources().getIdentifier(
                     featuredYoga.getPicPath(), "drawable", getPackageName());
             if (drawableId != 0) {
-                binding.imgWorkoutBanner.setImageResource(drawableId);
+                imgWorkoutBanner.setImageResource(drawableId);
             }
         }
 
-
-        binding.btnStartWorkout.setOnClickListener(v -> {
-            if (featuredYoga.getLessions() != null && !featuredYoga.getLessions().isEmpty()) {
-                Lession firstLesson = featuredYoga.getLessions().get(0);
-                Intent intent = new Intent(MainActivity.this, PlayVideoActivity.class);
-                intent.putExtra("video_url", firstLesson.getLink());
-                startActivity(intent);
-            }
-        });
+        if (btnStartWorkout != null) {
+            btnStartWorkout.setOnClickListener(v -> {
+                if (featuredYoga.getLessions() != null && !featuredYoga.getLessions().isEmpty()) {
+                    Lession firstLesson = featuredYoga.getLessions().get(0);
+                    Intent intent = new Intent(MainActivity.this, PlayVideoActivity.class);
+                    intent.putExtra("video_url", firstLesson.getLink());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
-
     private void setupRecyclerView(ArrayList<Yoga> list) {
-        binding.rvExplore.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        yogaAdapter = new YogaAdapter(list);
-        binding.rvExplore.setAdapter(yogaAdapter);
+        if (rvExplore != null) {
+            rvExplore.setLayoutManager(
+                    new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            yogaAdapter = new YogaAdapter(list);
+            rvExplore.setAdapter(yogaAdapter);
+        }
     }
 }

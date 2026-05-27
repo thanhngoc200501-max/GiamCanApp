@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
     private ImageView btnBack;
     private EditText edtEmail, edtPassword;
-    private TextView tvQMK, tvdk;
+    private TextView tvdk;
     private Button btnDN;
     private FirebaseAuth mAuth;
 
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edt_password);
         btnDN = findViewById(R.id.btn_sign_in);
         tvdk = findViewById(R.id.tv_go_to_signup);
-        tvQMK = findViewById(R.id.tvQMK);
+
 
         btnBack.setOnClickListener(v -> {
             finish();
@@ -55,9 +55,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        tvQMK.setOnClickListener(v -> {
-            Toast.makeText(LoginActivity.this, "Chức năng khôi phục mật khẩu", Toast.LENGTH_SHORT).show();
-        });
+
     }
     private void loginWithFirebase(String email, String password) {
         Toast.makeText(LoginActivity.this, "Đang xử lý đăng nhập...", Toast.LENGTH_SHORT).show();

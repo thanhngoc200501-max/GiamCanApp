@@ -7,11 +7,12 @@ public class Lession implements Serializable {
     private String ThoiGian;
     private String link;
     private String picPath;
-
+    public Lession() {
+    }
     public Lession(String tieuDe, String link, String thoiGian, String picPath) {
-        TieuDe = tieuDe;
+        this.TieuDe = tieuDe;
         this.link = link;
-        ThoiGian = thoiGian;
+        this.ThoiGian = thoiGian;
         this.picPath = picPath;
     }
 

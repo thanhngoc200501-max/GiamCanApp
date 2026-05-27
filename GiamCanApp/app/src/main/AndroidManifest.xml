@@ -31,6 +31,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".CourseActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
@@ -38,6 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false" />
     </application>
 

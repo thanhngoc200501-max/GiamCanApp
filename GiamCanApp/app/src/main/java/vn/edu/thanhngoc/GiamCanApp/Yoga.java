@@ -8,8 +8,14 @@ public class Yoga implements Serializable {
     private String mota;
     private String picPath;
     private int calo;
-    private ArrayList<Lession> lessions; // Đã sửa thành Lession chuẩn
+    private ArrayList<Lession> lessions;
+    private String capDo;
+    private String mucTieu;
 
+    public String getCapDo() { return capDo; }
+    public void setCapDo(String capDo) { this.capDo = capDo; }
+    public String getMucTieu() { return mucTieu; }
+    public void setMucTieu(String mucTieu) { this.mucTieu = mucTieu; }
     public String getTieuDe() {
         return TieuDe;
     }
