@@ -31,9 +31,7 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Yoga yoga = list.get(position);
 
-
         holder.binding.TieuDe.setText(yoga.getTieuDe());
-
 
         int sizeLessions = 0;
         if (yoga.getLessions() != null) {
@@ -41,9 +39,11 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
         }
         holder.binding.thoiGian.setText(sizeLessions + " bài tập");
 
-
         holder.binding.calo.setText(yoga.getCalo() + " kcal");
 
+        holder.binding.tvLevel.setText(yoga.getCapDo());
+        holder.binding.tvTag.setText(yoga.getMucTieu());
+        holder.binding.tvDescription.setText(yoga.getMota());
 
         if (yoga.getPicPath() != null) {
             int drawableResourceId = context.getResources().getIdentifier(
@@ -55,7 +55,6 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
                 holder.binding.imageView2.setImageResource(android.R.drawable.ic_menu_gallery);
             }
         }
-
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, WorkoutDetailActivity.class);

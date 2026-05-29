@@ -1,84 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="240dp"
+    android:layout_width="280dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@color/bg_main_purple"
-    android:padding="8dp">
+    app:cardBackgroundColor="#171223"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/RoundedImageView"
-        android:src="@android:drawable/ic_menu_gallery"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/TieuDe"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="4dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="Yoga Eo Thon Dáng Đẹp"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginHorizontal="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TieuDe">
-
-        <ImageView
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/stopwatch"
-            app:tint="#9795B4" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/TopRoundedImageView"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/thoiGian"
+            android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="4dp"
-            android:text="3 bài tập"
-            android:textColor="#9795B4"
-            android:textSize="12sp" />
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_pill_translucent"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="Trung bình"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/imageView2"
+            app:layout_constraintTop_toTopOf="@id/imageView2" />
 
-        <ImageView
-            android:layout_width="14dp"
-            android:layout_height="11dp"
-            android:layout_gravity="center_vertical"
+        <LinearLayout
+            android:id="@+id/layout_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_pill_translucent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView2"
+            app:layout_constraintStart_toStartOf="@id/imageView2">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/stopwatch"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/thoiGian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="25'"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/bg_pill_translucent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView2"
+            app:layout_constraintEnd_toEndOf="@id/imageView2">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/fire"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/calo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="180 kcal"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:src="@drawable/fire"
-            app:tint="#9795B4" /> <TextView
-        android:id="@+id/calo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="4dp"
-        android:text="90 kcal"
-        android:textColor="#9795B4"
-        android:textSize="12sp" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_pill_border"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="Giảm mỡ bụng"
+            android:textColor="#9E99B8"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView2" />
+
+        <TextView
+            android:id="@+id/TieuDe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Đốt Mỡ Bụng 20 Phút"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tag" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.1"
+            android:maxLines="2"
+            android:text="Bài tập trung vào vùng core, đốt cháy mỡ bụng hiệu quả."
+            android:textColor="#9E99B8"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TieuDe" />
+
+        <LinearLayout
+            android:id="@+id/btn_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xem chi tiết"
+                android:textColor="#E34E91"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="6dp"
+                android:src="@android:drawable/ic_media_play"
+                app:tint="#E34E91" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide; // Nhập thư viện Glide để load ảnh
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,12 +22,18 @@ public class MainActivity extends AppCompatActivity {
     private YogaAdapter yogaAdapter;
     private FirebaseFirestore db;
 
+    private TextView tvName;
+    private ImageView imgAvatar;
+
     private BottomNavigationView bottomNavigationView;
     private TextView tvWorkoutTitle;
     private TextView tvWorkoutDescription;
     private ImageView imgWorkoutBanner;
     private MaterialButton btnStartWorkout;
     private RecyclerView rvExplore;
+    private TextView tvHeight;
+    private TextView tvWeight;
+    private TextView tvAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         setupBottomNavigation();
         loadDataFromFirestore();
+        loadUserProfileInfo();
     }
 
     private void initViews() {
@@ -47,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         imgWorkoutBanner = findViewById(R.id.img_workout_banner);
         btnStartWorkout = findViewById(R.id.btn_start_workout);
         rvExplore = findViewById(R.id.rv_explore);
+
+        tvName = findViewById(R.id.tv_name);
+        imgAvatar = findViewById(R.id.img_avatar);
+        tvHeight = findViewById(R.id.tv_height);
+        tvWeight = findViewById(R.id.tv_weight);
+        tvAge = findViewById(R.id.tv_age);
     }
 
     private void setupBottomNavigation() {
@@ -89,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                             yoga.setTieuDe(document.getString("TieuDe"));
                             yoga.setMota(document.getString("mota"));
                             yoga.setPicPath(document.getString("picPath"));
+                            yoga.setCapDo(document.getString("capDo"));
+                            yoga.setMucTieu(document.getString("mucTieu"));
 
                             Double caloDouble = document.getDouble("calo");
                             if (caloDouble != null) {
@@ -163,6 +179,61 @@ public class MainActivity extends AppCompatActivity {
                     new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
             yogaAdapter = new YogaAdapter(list);
             rvExplore.setAdapter(yogaAdapter);
+        }
+    }
+
+    private void loadUserProfileInfo() {
+        com.google.firebase.auth.FirebaseAuth mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
+        com.google.firebase.auth.FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("users").document(userId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String userName = documentSnapshot.getString("displayName");
+                            if (tvName != null) {
+                                if (userName != null && !userName.trim().isEmpty()) {
+                                    tvName.setText(userName);
+                                } else {
+                                    tvName.setText("Khách");
+                                }
+                            }
+
+                            String avatarUrl = documentSnapshot.getString("avatarUrl");
+                            if (imgAvatar != null && avatarUrl != null && !avatarUrl.isEmpty()) {
+                                Glide.with(MainActivity.this)
+                                        .load(avatarUrl)
+                                        .placeholder(android.R.drawable.ic_menu_gallery)
+                                        .into(imgAvatar);
+                            }
+
+                            Double height = documentSnapshot.getDouble("height");
+                            Double weight = documentSnapshot.getDouble("weight");
+                            Long age = documentSnapshot.getLong("age"); // Tuổi thường lưu dạng số nguyên
+
+                            if (tvHeight != null && height != null) {
+                                tvHeight.setText(String.format(java.util.Locale.US, "%.0f cm", height));
+                            }
+
+                            if (tvWeight != null && weight != null) {
+                                tvWeight.setText(String.format(java.util.Locale.US, "%.0f kg", weight));
+                            }
+
+                            if (tvAge != null && age != null) {
+                                tvAge.setText(String.format(java.util.Locale.US, "%d tuổi", age));
+                            }
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("Firestore_Debug", "Lỗi tải thông tin profile: ", e);
+                        if (tvName != null) tvName.setText("Khách");
+                    });
+
+        } else {
+            if (tvName != null) tvName.setText("Khách");
         }
     }
 }

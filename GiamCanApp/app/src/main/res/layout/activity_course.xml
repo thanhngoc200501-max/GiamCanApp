@@ -92,7 +92,7 @@
                     <TextView android:id="@+id/tvGoalAll" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mọi mục tiêu" android:textColor="#FFFFFF" android:background="@drawable/bg_gradient_button" android:paddingHorizontal="16dp" android:paddingVertical="8dp" android:layout_marginEnd="8dp"/>
                     <TextView android:id="@+id/tvGoalFatBurn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Giảm mỡ bụng" android:textColor="#A099B0" android:background="@drawable/bg_filter_unselected" android:paddingHorizontal="16dp" android:paddingVertical="8dp" android:layout_marginEnd="8dp"/>
                     <TextView android:id="@+id/tvGoalFlexibility" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tăng độ dẻo" android:textColor="#A099B0" android:background="@drawable/bg_filter_unselected" android:paddingHorizontal="16dp" android:paddingVertical="8dp" android:layout_marginEnd="8dp"/>
-                    <TextView android:id="@+id/tvGoalRelax" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Thường xuyên" android:textColor="#A099B0" android:background="@drawable/bg_filter_unselected" android:paddingHorizontal="16dp" android:paddingVertical="8dp"/>
+                    <TextView android:id="@+id/tvGoalRelax" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Thư Giãn" android:textColor="#A099B0" android:background="@drawable/bg_filter_unselected" android:paddingHorizontal="16dp" android:paddingVertical="8dp"/>
                 </LinearLayout>
             </HorizontalScrollView>
 

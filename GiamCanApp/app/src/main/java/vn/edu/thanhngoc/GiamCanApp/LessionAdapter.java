@@ -45,7 +45,6 @@ public class LessionAdapter extends RecyclerView.Adapter<LessionAdapter.ViewHold
         }
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, PlayVideoActivity.class);
-            // Lấy link video từ đối tượng Lession và gửi sang PlayVideoActivity
             intent.putExtra("video_url", lession.getLink());
             context.startActivity(intent);
         });

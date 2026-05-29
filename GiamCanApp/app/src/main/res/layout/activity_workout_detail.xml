@@ -48,7 +48,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="3 Bài tập • 160 Kcal"
-            android:textColor="#FF5722"
+            android:textColor="#E91E63"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDetailTitle" />

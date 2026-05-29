@@ -1,7 +1,9 @@
 package vn.edu.thanhngoc.GiamCanApp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,13 +22,14 @@ import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Locale;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Spinner spinnerGender;
     private Spinner spinnerActivity;
     private MaterialButton btnSaveProfile;
-    private MaterialButton btnLogout; // <-- THÊM BIẾN NÀY ĐỂ QUẢN LÝ NÚT ĐĂNG XUẤT
+    private MaterialButton btnLogout;
 
     private TextView tvUserName;
     private TextView tvUserEmail;
@@ -51,13 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView tvResStatus;
     private TextView tvResTdee;
     private TextView tvResTargetCalories;
-    private TextView tvResYogaPlan;
 
     private BottomNavigationView bottomNavigationView;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    private FirebaseStorage storage;
 
     private Uri imageUri;
     private String uploadedImageUrl = "";
@@ -78,7 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        storage = FirebaseStorage.getInstance();
 
         initViews();
         setupSpinners();
@@ -86,10 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
         loadUserProfile();
 
         imgProfileAvatar.setOnClickListener(v -> openGallery());
-
         btnSaveProfile.setOnClickListener(v -> handleSaveAndCalculate());
-
-        // <-- THÊM SỰ KIỆN CLICK CHO NÚT ĐĂNG XUẤT TẠI ĐÂY
         btnLogout.setOnClickListener(v -> handleLogout());
     }
 
@@ -101,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
         spinnerGender = findViewById(R.id.spinner_gender);
         spinnerActivity = findViewById(R.id.spinner_activity);
         btnSaveProfile = findViewById(R.id.btn_save_profile);
-        btnLogout = findViewById(R.id.btn_logout); // <-- THÊM ÁNH XẠ CHO NÚT ĐĂNG XUẤT
+        btnLogout = findViewById(R.id.btn_logout);
 
         tvUserName = findViewById(R.id.tv_user_name);
         tvUserEmail = findViewById(R.id.tv_user_email);
@@ -112,7 +109,6 @@ public class ProfileActivity extends AppCompatActivity {
         tvResStatus = findViewById(R.id.tv_res_status);
         tvResTdee = findViewById(R.id.tv_res_tdee);
         tvResTargetCalories = findViewById(R.id.tv_res_target_calories);
-        tvResYogaPlan = findViewById(R.id.tv_res_yoga_plan);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
     }
@@ -171,14 +167,61 @@ public class ProfileActivity extends AppCompatActivity {
             if (currentUser.getEmail() != null) {
                 tvUserEmail.setText(currentUser.getEmail());
             }
-
             String userId = currentUser.getUid();
             db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
+                    String name = documentSnapshot.getString("displayName");
+                    if (name != null) {
+                        edtDisplayName.setText(name);
+                        tvUserName.setText(name);
+                    }
                     String avatarUrl = documentSnapshot.getString("avatarUrl");
                     if (avatarUrl != null && !avatarUrl.isEmpty()) {
                         uploadedImageUrl = avatarUrl;
                         Glide.with(this).load(avatarUrl).into(imgProfileAvatar);
+                    }
+                    Double height = documentSnapshot.getDouble("height");
+                    if (height != null) {
+                        edtHeight.setText(String.format(Locale.US, "%.0f", height));
+                    }
+                    Double weight = documentSnapshot.getDouble("weight");
+                    if (weight != null) {
+                        edtWeight.setText(String.format(Locale.US, "%.1f", weight));
+                    }
+                    Long age = documentSnapshot.getLong("age");
+                    if (age != null) {
+                        edtAge.setText(String.valueOf(age));
+                    }
+                    String gender = documentSnapshot.getString("gender");
+                    if (gender != null && spinnerGender != null) {
+                        if (gender.equals("Nam")) {
+                            spinnerGender.setSelection(1);
+                        } else {
+                            spinnerGender.setSelection(0);
+                        }
+                    }
+                    String activityLevel = documentSnapshot.getString("activityLevel");
+                    if (activityLevel != null && spinnerActivity != null) {
+                        ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerActivity.getAdapter();
+                        if (adapter != null) {
+                            int position = adapter.getPosition(activityLevel);
+                            if (position >= 0) {
+                                spinnerActivity.setSelection(position);
+                            }
+                        }
+                    }
+
+                    Double bmi = documentSnapshot.getDouble("bmi");
+                    Double tdee = documentSnapshot.getDouble("tdee");
+                    Double targetCalories = documentSnapshot.getDouble("targetCalories");
+                    String healthStatus = documentSnapshot.getString("healthStatus");
+
+                    if (bmi != null && tdee != null && targetCalories != null) {
+                        tvResBmi.setText(String.format(Locale.US, "BMI: %.1f", bmi));
+                        tvResStatus.setText(healthStatus != null ? healthStatus : "");
+                        tvResTdee.setText(String.format(Locale.US, "TDEE: %.0f kcal", tdee));
+                        tvResTargetCalories.setText(String.format(Locale.US, "Mục tiêu: %.0f kcal", targetCalories));
+                        cardResult.setVisibility(View.VISIBLE);
                     }
                 }
             });
@@ -226,24 +269,19 @@ public class ProfileActivity extends AppCompatActivity {
         tvResBmi.setText(String.format(Locale.US, "BMI: %.1f", bmi));
 
         String status;
-        String yogaRecommendation;
         int calorieAdjustment;
         if (bmi < 18.5) {
             status = "Trạng thái: Nhẹ cân ";
             calorieAdjustment = 300;
-            yogaRecommendation = "Lộ trình đề xuất: Hatha Yoga nhẹ nhàng kết hợp các bài tập phục hồi";
         } else if (bmi < 23.0) {
             status = "Trạng thái: Bình thường";
             calorieAdjustment = 0;
-            yogaRecommendation = "Lộ trình đề xuất: Vinyasa Flow & Ashtanga Yoga kết hợp dẻo dải";
         } else if (bmi < 25.0) {
             status = "Trạng thái: Thừa cân nhẹ";
             calorieAdjustment = -250;
-            yogaRecommendation = "Lộ trình đề xuất: Power Yoga & Detox Flow tốc độ vừa";
         } else {
             status = "Trạng thái: Béo phì";
             calorieAdjustment = -500;
-            yogaRecommendation = "Lộ trình đề xuất: Cardio Yoga đốt mỡ & Kiểm soát hơi thở";
         }
         tvResStatus.setText(status);
 
@@ -268,31 +306,38 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvResTdee.setText(String.format(Locale.US, "TDEE: %.0f kcal", tdee));
         tvResTargetCalories.setText(String.format(Locale.US, "Mục tiêu: %.0f kcal", targetCalories));
-        tvResYogaPlan.setText(yogaRecommendation);
 
         cardResult.setVisibility(View.VISIBLE);
 
         String userId = currentUser.getUid();
 
         if (imageUri != null) {
-            StorageReference fileRef = storage.getReference().child("profile_images/" + userId + ".jpg");
+            String localPath = saveImageToInternalStorage(imageUri, userId);
+            if (localPath != null) {
+                uploadedImageUrl = localPath;
+            }
+        }
 
-            Toast.makeText(this, "Đang tải ảnh và lưu thông tin...", Toast.LENGTH_SHORT).show();
+        saveDataToFirestore(userId, name, email, height, weight, age, isMale, bmi, tdee, targetCalories, status, uploadedImageUrl);
+    }
 
-            fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
-                fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    uploadedImageUrl = uri.toString();
-                    saveDataToFirestore(userId, name, email, height, weight, age, isMale, bmi, tdee, targetCalories, status, yogaRecommendation, uploadedImageUrl);
-                });
-            }).addOnFailureListener(e -> {
-                Toast.makeText(ProfileActivity.this, "Lỗi tải ảnh: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        } else {
-            saveDataToFirestore(userId, name, email, height, weight, age, isMale, bmi, tdee, targetCalories, status, yogaRecommendation, uploadedImageUrl);
+    private String saveImageToInternalStorage(Uri uri, String userId) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            File directory = getDir("profile_pics", Context.MODE_PRIVATE);
+            File myPath = new File(directory, userId + ".jpg");
+
+            FileOutputStream fos = new FileOutputStream(myPath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+            fos.close();
+            return myPath.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
-    private void saveDataToFirestore(String userId, String name, String email, double height, double weight, int age, boolean isMale, double bmi, double tdee, double targetCalories, String status, String yogaPlan, String avatarUrl) {
+    private void saveDataToFirestore(String userId, String name, String email, double height, double weight, int age, boolean isMale, double bmi, double tdee, double targetCalories, String status, String avatarUrl) {
         Map<String, Object> userProfile = new HashMap<>();
         userProfile.put("displayName", name);
         userProfile.put("email", email);
@@ -305,7 +350,6 @@ public class ProfileActivity extends AppCompatActivity {
         userProfile.put("tdee", tdee);
         userProfile.put("targetCalories", targetCalories);
         userProfile.put("healthStatus", status);
-        userProfile.put("yogaPlan", yogaPlan);
         userProfile.put("avatarUrl", avatarUrl);
         userProfile.put("lastUpdated", System.currentTimeMillis());
 
@@ -323,10 +367,8 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth.signOut();
         Intent intent = new Intent(ProfileActivity.this, WelcomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         startActivity(intent);
         finish();
-
         Toast.makeText(this, "Đã đăng xuất tài khoản thành công!", Toast.LENGTH_SHORT).show();
     }
 }
