@@ -11,7 +11,8 @@ public class Yoga implements Serializable {
     private ArrayList<Lession> lessions;
     private String capDo;
     private String mucTieu;
-
+    private boolean isFavorite = false;
+    private String id;
     public String getCapDo() { return capDo; }
     public void setCapDo(String capDo) { this.capDo = capDo; }
     public String getMucTieu() { return mucTieu; }
@@ -54,5 +55,19 @@ public class Yoga implements Serializable {
 
     public void setLessions(ArrayList<Lession> lessions) {
         this.lessions = lessions;
+    }
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

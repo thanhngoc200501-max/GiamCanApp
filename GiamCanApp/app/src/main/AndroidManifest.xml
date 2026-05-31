@@ -47,6 +47,9 @@
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
+        <activity
+            android:name=".FavoriteActivity"
+            android:exported="false" />
 
     </application>
 

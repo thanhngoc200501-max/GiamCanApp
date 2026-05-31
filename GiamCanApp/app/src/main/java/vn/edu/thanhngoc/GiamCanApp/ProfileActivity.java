@@ -150,6 +150,12 @@ public class ProfileActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     finish();
                     return true;
+                } else if (itemId == R.id.nav_favorite) {
+                    Intent intent = new Intent(ProfileActivity.this, FavoriteActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
                 }
                 return false;
             });

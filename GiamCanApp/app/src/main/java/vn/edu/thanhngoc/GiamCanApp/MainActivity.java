@@ -85,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     return true;
                 }
+                else if (itemId == R.id.nav_favorite) {
+                    Intent intent = new Intent(MainActivity.this, FavoriteActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                    return true;
+                }
                 return false;
             });
         }
@@ -100,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Yoga yoga = new Yoga();
+                            yoga.setId(document.getId());
                             yoga.setTieuDe(document.getString("TieuDe"));
                             yoga.setMota(document.getString("mota"));
                             yoga.setPicPath(document.getString("picPath"));

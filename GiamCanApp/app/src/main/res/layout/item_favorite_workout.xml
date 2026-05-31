@@ -2,9 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="280dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
     app:cardBackgroundColor="#171223"
     app:cardCornerRadius="24dp"
     app:cardElevation="0dp"
@@ -17,7 +18,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@android:drawable/ic_menu_gallery"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,20 +29,20 @@
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="14dp"
             android:background="@drawable/bg_pill_translucent"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="7dp"
             android:text="Trung bình"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/imageView2"
             app:layout_constraintTop_toTopOf="@id/imageView2" />
 
         <ImageView
-            android:contentDescription="Lưu bài tập vào danh sách yêu thích"
             android:id="@+id/btn_heart"
+            android:contentDescription="Lưu bài tập vào danh sách yêu thích"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginTop="12dp"
@@ -49,30 +50,29 @@
             android:background="@drawable/bg_pill_translucent"
             android:clickable="true"
             android:focusable="true"
-            android:padding="8dp"
+            android:padding="10dp"
             android:src="@drawable/heart"
             app:layout_constraintEnd_toEndOf="@id/imageView2"
             app:layout_constraintTop_toTopOf="@id/imageView2"
             app:tint="@color/white"
             tools:ignore="UseAppTint" />
 
-
         <LinearLayout
             android:id="@+id/layout_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="14dp"
             android:background="@drawable/bg_pill_translucent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="7dp"
             app:layout_constraintBottom_toBottomOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="@id/imageView2">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/stopwatch"
                 app:tint="@color/white" />
 
@@ -80,10 +80,10 @@
                 android:id="@+id/thoiGian"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="5dp"
                 android:text="25'"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -91,18 +91,18 @@
             android:id="@+id/layout_calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_margin="14dp"
             android:background="@drawable/bg_pill_translucent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="7dp"
             app:layout_constraintBottom_toBottomOf="@id/imageView2"
             app:layout_constraintEnd_toEndOf="@id/imageView2">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:src="@drawable/fire"
                 app:tint="@color/white" />
 
@@ -110,10 +110,10 @@
                 android:id="@+id/calo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="5dp"
                 android:text="180 kcal"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -124,11 +124,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_pill_border"
-            android:paddingHorizontal="12dp"
+            android:paddingHorizontal="14dp"
             android:paddingVertical="6dp"
             android:text="Giảm mỡ bụng"
             android:textColor="#9E99B8"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView2" />
 
@@ -142,7 +142,7 @@
             android:maxLines="1"
             android:text="Đốt Mỡ Bụng 20 Phút"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +159,7 @@
             android:maxLines="2"
             android:text="Bài tập trung vào vùng core, đốt cháy mỡ bụng hiệu quả."
             android:textColor="#9E99B8"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/TieuDe" />
@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:text="Xem chi tiết"
                 android:textColor="#E34E91"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <ImageView

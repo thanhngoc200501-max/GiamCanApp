@@ -11,9 +11,9 @@
         android:title="Khóa Học" />
 
     <item
-        android:id="@+id/nav_schedule"
-        android:icon="@drawable/ic_schedule"
-        android:title="Lịch trình" />
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/heart"
+        android:title="Yêu thích" />
 
     <item
         android:id="@+id/nav_profile"
