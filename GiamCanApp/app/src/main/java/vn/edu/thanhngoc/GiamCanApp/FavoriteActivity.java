@@ -40,10 +40,9 @@ public class FavoriteActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         currentUserId = FirebaseAuth.getInstance().getUid();
-        adapter = new YogaAdapter(favoriteList, true);
         favoriteList = new ArrayList<>();
         rvFavorite.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new YogaAdapter(favoriteList);
+        adapter = new YogaAdapter(favoriteList, true);
         rvFavorite.setAdapter(adapter);
 
         setupBottomNavigation();

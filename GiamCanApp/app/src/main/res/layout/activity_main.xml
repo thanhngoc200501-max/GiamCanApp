@@ -96,10 +96,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/fire"
-                        app:tint="#FF5722" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/height"
+                         />
 
                     <TextView
                         android:id="@+id/tv_height"
@@ -127,10 +127,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/crescent"
-                        app:tint="#FFEB3B" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/scales"
+                         />
 
                     <TextView
                         android:id="@+id/tv_weight"
@@ -158,10 +158,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/stopwatch"
-                        app:tint="#4CAF50" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/user"
+                         />
 
                     <TextView
                         android:id="@+id/tv_age"
