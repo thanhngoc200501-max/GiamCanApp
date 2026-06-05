@@ -48,5 +48,16 @@ Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 <img  width="250" alt="z7896298045484_eaeadd67d4f88db7f6f439ed6a1b30a6" src="https://github.com/user-attachments/assets/dc122408-60a0-4c98-bb05-dba48b9d845c" />
 <img  width="250" alt="z7896298067925_7ec73fb8d8b92947ce578dbfd4cc370c" src="https://github.com/user-attachments/assets/4b819650-1164-4a55-acbf-11fe73e4182c" />
 <img  width="250" alt="z7896383569751_368f1933473274e44cd4633ccb479217" src="https://github.com/user-attachments/assets/d3149bfb-b7b4-452a-91d1-d4497a8766f7" />
-<img  width="250" height="847" alt="z7896383591633_8b46c0fd1247b1d074b32dc76bc24913" src="https://github.com/user-attachments/assets/45d501ef-0ce8-4090-95d9-1f776126b286" />
+<img  width="250" alt="z7896383591633_8b46c0fd1247b1d074b32dc76bc24913" src="https://github.com/user-attachments/assets/45d501ef-0ce8-4090-95d9-1f776126b286" />
+
+**4. Bài tập yêu thich**
+
+<img width="250" alt="z7896298092021_d7f92e6fbe1d727abbdd4085afb0dae9" src="https://github.com/user-attachments/assets/1f79e466-1258-455b-afa3-3225d2a8547e" />
+
+**5. Hồ sơ cá nhân**
+
+<img width="250" alt="z7896298103887_d80b2abb0ac27cc83648708a214d3c16" src="https://github.com/user-attachments/assets/b8c44c50-b493-4948-a138-cadf9ce6fe8d" />
+<img width="250" alt="z7896298145452_3c52d7fe0ec5e0ac5c01acf8f9ad2300" src="https://github.com/user-attachments/assets/2934e22d-a84f-4c3f-8f31-444de076fad9" />
+<img width="250" alt="z7896298129614_8753dbc2ba96486f8583e989fbbee855" src="https://github.com/user-attachments/assets/6a7a35d7-4da4-4465-b1d2-ec05d68ccfd0" />
+
 
