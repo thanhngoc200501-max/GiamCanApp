@@ -31,7 +31,7 @@ Tính năng: Nơi đánh dấu và lưu trữ các video bài tập phù hợp v
 
 Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 
-Điểm nổi bật: Sử dụng Firebase Authentication để xác thực an toàn, bảo vệ thông tin người tập tuyệt đối. 
+Điểm nổi bật: Sử dụng Firebase Authentication để xác thực an toàn. 
 
 📸 Hình ảnh Giao diện
 
