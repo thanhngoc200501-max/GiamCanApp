@@ -2,11 +2,13 @@
 👨‍💻 Thông tin Tác giả
 
 Sinh viên thực hiện: Lê Hồ Thanh Ngọc
+
 MSSV: 65132228
 
 🌟 Yoga - Ứng dụng Giảm cân & Sức khỏe
 
 🚀 Các tính năng chính
+
 1. 📊 Theo dõi Sức khỏe (BMI & TDEE)
 
 Tính năng: Nhập liệu chỉ số cơ thể (chiều cao, cân nặng, độ tuổi, giới tính) để tính toán BMI và TDEE.
