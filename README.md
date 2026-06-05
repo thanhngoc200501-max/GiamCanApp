@@ -1,4 +1,4 @@
-<img width="847" height="1931" alt="z7896297999693_2173bedaccc8f1da476205973836bc58" src="https://github.com/user-attachments/assets/2721a92e-361e-49bd-a28b-f92cb6f414bd" />
+
 👨‍💻 Thông tin Tác giả
 
 Sinh viên thực hiện: Lê Hồ Thanh Ngọc
@@ -27,7 +27,11 @@ Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 
 **1. Giới thiệu & Đăng nhập**
 <br>
-<img width="200" alt="Màn hình Giới thiệu" src="https://github.com/user-attachments/assets/98a93108-ea29-401a-8896-782b7a645c5c" /> <img width="200" alt="Màn hình Đăng nhập" src="https://github.com/user-attachments/assets/4408c1fa-d86d-4010-bd4d-be54630ba03d" />
+<img width="250" alt="Màn hình Giới thiệu" src="https://github.com/user-attachments/assets/98a93108-ea29-401a-8896-782b7a645c5c" /> 
+<img width="250" alt="Màn hình Đăng nhập" src="https://github.com/user-attachments/assets/4408c1fa-d86d-4010-bd4d-be54630ba03d" />
+<img width="250" alt="z7896298007539_fe7366d64f3a63e6b63ae53529ed444a" src="https://github.com/user-attachments/assets/516e6e77-3e7a-4f5c-82cc-1b21694d2eb2" />
+<img width="250" alt="z7896298030859_8aa831741d17d55037170596b0b119a7" src="https://github.com/user-attachments/assets/ba0bac19-7c6e-44f5-8553-8d845facb7d2" />
+
 
 
 
