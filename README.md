@@ -24,5 +24,5 @@ Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 
 📸 Hình ảnh Giao diện
 
-1. Đăng nhập & Trang chủ
-   <img width="847" height="1931" alt="z7896297990223_94857b8f665108959f42bde5370a5142" src="https://github.com/user-attachments/assets/98a93108-ea29-401a-8896-782b7a645c5c" />
+1. Giới thiệu & đăng nhập
+   <img width="400" height="400" alt="z7896297990223_94857b8f665108959f42bde5370a5142" src="https://github.com/user-attachments/assets/98a93108-ea29-401a-8896-782b7a645c5c" />
