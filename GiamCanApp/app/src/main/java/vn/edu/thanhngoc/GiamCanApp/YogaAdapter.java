@@ -26,7 +26,6 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
     private Context context;
     private boolean isFavoriteScreen;
 
-    // Định nghĩa hằng số phân biệt loại View
     private static final int TYPE_NORMAL = 0;
     private static final int TYPE_FAVORITE = 1;
 
@@ -40,7 +39,6 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
         this.isFavoriteScreen = isFavoriteScreen;
     }
 
-    // THÊM HÀM NÀY: Ép RecyclerView phân tách vùng nhớ layout, chống lỗi tái chế kích thước nhỏ
     @Override
     public int getItemViewType(int position) {
         if (isFavoriteScreen) {
@@ -56,7 +54,6 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
         context = parent.getContext();
         int layoutId;
 
-        // Dựa vào viewType được phân tách để nạp chuẩn layout
         if (viewType == TYPE_FAVORITE) {
             layoutId = R.layout.item_favorite_workout;
         } else {
@@ -105,12 +102,12 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
         holder.btnHeart.setOnClickListener(v -> {
             String currentUserId = FirebaseAuth.getInstance().getUid();
             if (currentUserId == null) {
+                // Giữ lại thông báo này để người dùng biết tại sao không click được trái tim
                 Toast.makeText(context, "Vui lòng đăng nhập để lưu bài tập!", Toast.LENGTH_SHORT).show();
                 return;
             }
             String courseId = yoga.getId();
             if (courseId == null) {
-                Toast.makeText(context, "Không tìm thấy ID bài tập!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -120,7 +117,7 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
             if (!yoga.isFavorite()) {
                 yoga.setFavorite(true);
                 holder.btnHeart.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF3B30")));
-                Toast.makeText(context, "Đã thêm vào yêu thích!", Toast.LENGTH_SHORT).show();
+
                 Map<String, Object> favData = new HashMap<>();
                 favData.put("userId", currentUserId);
                 favData.put("courseId", courseId);
@@ -130,18 +127,16 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
                         .addOnFailureListener(e -> {
                             yoga.setFavorite(false);
                             holder.btnHeart.setImageTintList(ColorStateList.valueOf(Color.WHITE));
-                            Toast.makeText(context, "Lỗi kết nối mạng, không thể lưu bài tập!", Toast.LENGTH_SHORT).show();
                         });
             } else  {
                 yoga.setFavorite(false);
                 holder.btnHeart.setImageTintList(ColorStateList.valueOf(Color.WHITE));
-                Toast.makeText(context, "Đã xóa khỏi yêu thích", Toast.LENGTH_SHORT).show();
+
                 db.collection("favorites").document(favDocumentId)
                         .delete()
                         .addOnFailureListener(e -> {
                             yoga.setFavorite(true);
                             holder.btnHeart.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF3B30")));
-                            Toast.makeText(context, "Hủy lưu thất bại, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
                         });
             }
         });

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,7 +74,6 @@ public class FavoriteActivity extends AppCompatActivity {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(FavoriteActivity.this, "Lỗi tải danh sách yêu thích!", Toast.LENGTH_SHORT).show();
                     checkEmptyState();
                 });
     }
@@ -99,7 +97,6 @@ public class FavoriteActivity extends AppCompatActivity {
                     checkEmptyState();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(FavoriteActivity.this, "Không thể lấy chi tiết bài tập!", Toast.LENGTH_SHORT).show();
                     checkEmptyState();
                 });
     }

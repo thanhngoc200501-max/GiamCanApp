@@ -2,7 +2,6 @@ package vn.edu.thanhngoc.GiamCanApp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide; // Nhập thư viện Glide để load ảnh
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -146,8 +145,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
 
-                    } else {
-                        Log.e("Firestore_Debug", "Lỗi: ", task.getException());
                     }
                 });
     }
@@ -220,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
                             Double height = documentSnapshot.getDouble("height");
                             Double weight = documentSnapshot.getDouble("weight");
-                            Long age = documentSnapshot.getLong("age"); // Tuổi thường lưu dạng số nguyên
+                            Long age = documentSnapshot.getLong("age");
 
                             if (tvHeight != null && height != null) {
                                 tvHeight.setText(String.format(java.util.Locale.US, "%.0f cm", height));
@@ -236,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Log.e("Firestore_Debug", "Lỗi tải thông tin profile: ", e);
                         if (tvName != null) tvName.setText("Khách");
                     });
 

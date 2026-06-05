@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -237,7 +236,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void handleSaveAndCalculate() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            Toast.makeText(this, "Chưa đăng nhập! Không thể lưu lên máy chủ.", Toast.LENGTH_SHORT).show();
             return;
         }
         String email = currentUser.getEmail() != null ? currentUser.getEmail() : "";
@@ -248,7 +246,6 @@ public class ProfileActivity extends AppCompatActivity {
         String ageStr = edtAge.getText().toString().trim();
 
         if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || ageStr.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập đầy đủ toàn bộ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -259,12 +256,10 @@ public class ProfileActivity extends AppCompatActivity {
             weight = Double.parseDouble(weightStr);
             age = Integer.parseInt(ageStr);
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Vui lòng nhập số hợp lệ cho Chiều cao, Cân nặng, Tuổi!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (height <= 0 || weight <= 0 || age <= 0) {
-            Toast.makeText(this, "Các chỉ số cơ thể phải lớn hơn 0!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -359,14 +354,7 @@ public class ProfileActivity extends AppCompatActivity {
         userProfile.put("avatarUrl", avatarUrl);
         userProfile.put("lastUpdated", System.currentTimeMillis());
 
-        db.collection("users").document(userId)
-                .set(userProfile)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(ProfileActivity.this, "Đã lưu hồ sơ thành công!", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(ProfileActivity.this, "Lỗi khi đồng bộ: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                });
+        db.collection("users").document(userId).set(userProfile);
     }
 
     private void handleLogout() {
@@ -375,6 +363,5 @@ public class ProfileActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
-        Toast.makeText(this, "Đã đăng xuất tài khoản thành công!", Toast.LENGTH_SHORT).show();
     }
 }
