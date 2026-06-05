@@ -6,9 +6,7 @@ Sinh viên thực hiện: Lê Hồ Thanh Ngọc
 MSSV: 65132228
 
 **Demo ứng dụng**
-
-
-
+https://drive.google.com/file/d/1W16C7nJQruL80bKy74UGobCUClxTCm-R/view?usp=sharing
 
 🌟 Yoga - Ứng dụng Giảm cân & Sức khỏe
 
