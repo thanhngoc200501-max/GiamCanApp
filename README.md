@@ -10,6 +10,7 @@ MSSV: 65132228
 
 Tính năng: Nhập liệu chỉ số cơ thể (chiều cao, cân nặng, độ tuổi, giới tính) để tính toán BMI và TDEE.
 Điểm nổi bật: Hệ thống tự động đánh giá thể trạng thực tế và đề xuất lượng calo cần cắt giảm ngay lập tức để người dùng kiểm soát vóc dáng.
+
 2. 🧘‍♀️ Khóa học & Bài tập Yoga
 
 Tính năng: Kho bài tập phong phú được phân loại theo cấp độ (Mới bắt đầu, Trung bình, Nâng cao) và mục tiêu (Giảm mỡ bụng, Dẻo dai, Thư giãn).
