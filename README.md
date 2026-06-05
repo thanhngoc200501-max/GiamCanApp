@@ -15,10 +15,12 @@ Tính năng: Nhập liệu chỉ số cơ thể (chiều cao, cân nặng, độ
 
 Tính năng: Kho bài tập phong phú được phân loại theo cấp độ (Mới bắt đầu, Trung bình, Nâng cao) và mục tiêu (Giảm mỡ bụng, Dẻo dai, Thư giãn).
 Điểm nổi bật: Video hướng dẫn trực quan tải từ nền tảng Cloudinary, giúp ứng dụng cực kỳ nhẹ mà vẫn đảm bảo tốc độ phát video mượt mà.
+
 3. ❤️ Tủ Bài tập Yêu thích
 
 Tính năng: Nơi đánh dấu và lưu trữ các video bài tập phù hợp với bản thân để dễ dàng tìm lại.
 Điểm nổi bật: Dữ liệu đồng bộ theo thời gian thực qua Cloud Firestore, tự động lưu trữ vĩnh viễn vào tài khoản cá nhân.
+
 4. 👤 Quản lý Hồ sơ & Bảo mật
 
 Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
