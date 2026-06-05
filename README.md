@@ -38,13 +38,16 @@ Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 
 **2. Trang chủ**
 
+
 <img width="250"  alt="z7905016122127_f58d859e7a15b2e5cd2233f35dce0074" src="https://github.com/user-attachments/assets/9a3c10ef-e4dd-4fcd-9f57-557e51ffcfdf" />
 <img width="250"  alt="z7905016134405_575ef99f1d8b1c3c04db766875f9f81a" src="https://github.com/user-attachments/assets/0a8c7712-15a2-45c3-a72e-a541a3d8bbbf" />
 
-**2. Khóa học && Bài tập**
+**3. Khóa học && Bài tập**
+
+
 
 <img  width="250" alt="z7896298067925_7ec73fb8d8b92947ce578dbfd4cc370c" src="https://github.com/user-attachments/assets/4b819650-1164-4a55-acbf-11fe73e4182c" />
-<img  width="250" alt="z7896298067925_7ec73fb8d8b92947ce578dbfd4cc370c" src="https://github.com/user-attachments/assets/32b2d742-124d-46ce-803b-52964ba07f3b" />
+
 <img  width="250" alt="z7896383569751_368f1933473274e44cd4633ccb479217" src="https://github.com/user-attachments/assets/d3149bfb-b7b4-452a-91d1-d4497a8766f7" />
 <img  width="250" height="847" alt="z7896383591633_8b46c0fd1247b1d074b32dc76bc24913" src="https://github.com/user-attachments/assets/45d501ef-0ce8-4090-95d9-1f776126b286" />
 
