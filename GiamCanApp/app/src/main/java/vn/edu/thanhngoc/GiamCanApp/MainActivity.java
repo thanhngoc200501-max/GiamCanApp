@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         db = FirebaseFirestore.getInstance();
-
         initViews();
         setupBottomNavigation();
         loadDataFromFirestore();
@@ -98,12 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadDataFromFirestore() {
         ArrayList<Yoga> listYoga = new ArrayList<>();
-
         db.collection("YogaCourses")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
-
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Yoga yoga = new Yoga();
                             yoga.setId(document.getId());

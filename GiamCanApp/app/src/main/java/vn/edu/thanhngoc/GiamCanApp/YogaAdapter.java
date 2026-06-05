@@ -102,7 +102,6 @@ public class YogaAdapter extends RecyclerView.Adapter<YogaAdapter.ViewHolder> {
         holder.btnHeart.setOnClickListener(v -> {
             String currentUserId = FirebaseAuth.getInstance().getUid();
             if (currentUserId == null) {
-                // Giữ lại thông báo này để người dùng biết tại sao không click được trái tim
                 Toast.makeText(context, "Vui lòng đăng nhập để lưu bài tập!", Toast.LENGTH_SHORT).show();
                 return;
             }

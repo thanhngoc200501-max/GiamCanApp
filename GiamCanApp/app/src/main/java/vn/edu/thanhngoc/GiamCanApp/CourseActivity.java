@@ -177,7 +177,6 @@ public class CourseActivity extends AppCompatActivity {
             }
 
             if (tvResultTitle != null) tvResultTitle.setText("Kết quả tìm thấy");
-
             setupRecyclerView(rvByGoal, filteredList);
             setAlternativeListsVisibility(View.GONE);
 
@@ -185,13 +184,11 @@ public class CourseActivity extends AppCompatActivity {
             if (tvResultTitle != null) tvResultTitle.setText("Theo Mục Tiêu");
 
             setAlternativeListsVisibility(View.VISIBLE);
-
             ArrayList<Yoga> goalList = new ArrayList<>();
             ArrayList<Yoga> levelList = new ArrayList<>();
             ArrayList<Yoga> relaxList = new ArrayList<>();
             ArrayList<Yoga> popularList = new ArrayList<>();
             ArrayList<Yoga> exploreMoreList = new ArrayList<>(masterYogaList);
-
             for (Yoga yoga : masterYogaList) {
                 if (yoga.getMucTieu() != null && yoga.getMucTieu().contains("Giảm mỡ bụng")) {
                     goalList.add(yoga);

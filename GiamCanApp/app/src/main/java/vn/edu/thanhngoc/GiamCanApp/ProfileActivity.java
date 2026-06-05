@@ -117,7 +117,6 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(genderAdapter);
-
         String[] activityOptions = {
                 "Ít vận động",
                 "Vận động nhẹ (Tập thể dục 1-3 ngày/tuần)",
