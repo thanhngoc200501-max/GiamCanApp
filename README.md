@@ -30,11 +30,16 @@ Tính năng: Đăng ký, đăng nhập và quản lý thông tin cá nhân.
 📸 Hình ảnh Giao diện
 
 **1. Giới thiệu & Đăng nhập**
-<br>
+
 <img width="250" alt="Màn hình Giới thiệu" src="https://github.com/user-attachments/assets/98a93108-ea29-401a-8896-782b7a645c5c" /> 
 <img width="250" alt="Màn hình Đăng nhập" src="https://github.com/user-attachments/assets/4408c1fa-d86d-4010-bd4d-be54630ba03d" />
 <img width="250" alt="z7896298007539_fe7366d64f3a63e6b63ae53529ed444a" src="https://github.com/user-attachments/assets/516e6e77-3e7a-4f5c-82cc-1b21694d2eb2" />
 <img width="250" alt="z7896298030859_8aa831741d17d55037170596b0b119a7" src="https://github.com/user-attachments/assets/ba0bac19-7c6e-44f5-8553-8d845facb7d2" />
+
+**2. Trang chủ**
+
+<img width="250"  alt="z7896298092021_d7f92e6fbe1d727abbdd4085afb0dae9" src="https://github.com/user-attachments/assets/4e375a21-512d-433a-a21a-c502d7c7c43c" />
+<img width="250" alt="z7896298167429_627d11218414c66a036b0d022c15a72c" src="https://github.com/user-attachments/assets/9b8f5acf-50de-407c-bd9b-9ce9524b4569" />
 
 
 
